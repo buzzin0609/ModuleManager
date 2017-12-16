@@ -1,5 +1,6 @@
 package settings;
 
+import jdk.internal.org.objectweb.asm.tree.analysis.Value;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -11,7 +12,7 @@ public class AppSettings {
     }
 
     private String defaultPath = System.getProperty("user.home");
-    private String dataFolder = defaultPath + "/.ModuleManager";
+    private String dataFolder = defaultPath + "/.ModularizeIt";
     private String defaultModuleFolder = dataFolder + "/modules";
     private String settingsFilePath = dataFolder + "/settings.json";
     private SettingsFile settingsFile;
@@ -22,6 +23,17 @@ public class AppSettings {
 
     private void setupDataFolder() {
         File _dataFolder = new File(dataFolder);
+
+        if (!_dataFolder.exists()) {
+            _dataFolder.mkdir();
+            setupDataContents();
+        } else {
+            setupDataContents();
+        }
+
+    }
+
+    private void setupDataContents() {
         this.settingsFile = new SettingsFile(settingsFilePath);
         JSONObject settings = settingsFile.getJson();
         String moduleFolder = settings.getString("moduleFolder");
@@ -33,14 +45,11 @@ public class AppSettings {
 
         _moduleFolder = new File(moduleFolder);
 
-        if (!_dataFolder.exists()) {
-            _dataFolder.mkdir();
-        }
+
 
         if (!_moduleFolder.exists()) {
             _moduleFolder.mkdir();
         }
-
     }
 
     public String getDefaultPath() {
@@ -49,6 +58,18 @@ public class AppSettings {
 
     public String getDataFolder() {
         return dataFolder;
+    }
+
+    public String getDefaultModuleFolder() {
+        return defaultModuleFolder;
+    }
+
+    public String getSettingsValue(String key) {
+        return settingsFile.getJson().getString(key);
+    }
+
+    public Boolean updateSettings(JSONObject newSettings) {
+        return settingsFile.updateFile(newSettings);
     }
 
 }

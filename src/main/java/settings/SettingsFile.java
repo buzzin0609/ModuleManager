@@ -28,22 +28,35 @@ public class SettingsFile {
     }
 
     private void createNewFile(File file) {
+        JSONObject defaults = new JSONObject();
+        defaults.put("moduleFolder", "not set");
+        defaults.put("gitUsername", "username");
+        defaults.put("gitPassword", "password");
+        writeToFile(file, defaults.toString());
+        addFile();
+    }
+
+    private Boolean writeToFile(File file, String content) {
+        FileWriter fw = null;
         try {
-            JSONObject defaults = new JSONObject();
-            defaults.put("moduleFolder", "not set");
-            defaults.put("gitUsername", "username");
-            defaults.put("gitPassword", "password");
-            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            fw = new FileWriter(file.getAbsoluteFile());
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(defaults.toString());
+            bw.write(content);
             bw.close();
-            addFile();
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
+        return true;
+
     }
 
     public JSONObject getJson() {
         return json;
+    }
+
+    public Boolean updateFile(JSONObject newSettings) {
+        json = newSettings;
+        return writeToFile(new File(filePath), newSettings.toString());
     }
 }

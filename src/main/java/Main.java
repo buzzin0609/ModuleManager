@@ -18,10 +18,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         SceneChanger.setStage(primaryStage, this);
         AppSettings.getInstance();
-        Parent root = FXMLLoader.load(this.getClass().getResource("/fxml/layout.fxml"));
-        primaryStage.setTitle("Module Manager");
-        primaryStage.setScene(new Scene(root, 600, 400));
-        primaryStage.show();
+        SceneChanger.changeScene("/fxml/main.fxml");
+        primaryStage.setTitle("Modularize.It");
+
 
 //        mainController.start(primaryStage, root);
 
