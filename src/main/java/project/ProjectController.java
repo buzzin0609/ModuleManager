@@ -39,7 +39,7 @@ public class ProjectController implements Initializable {
 
     @FXML
     private void handleDirectoryButton(MouseEvent event) {
-        DirectoryUtils.chooseDirectory(directoryInput);
+        DirectoryUtils.chooseDirectory(directoryInput, "Set project directory");
     }
 
     @FXML

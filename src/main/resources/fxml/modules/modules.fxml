@@ -1,15 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="modules.ModulesController"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.152" xmlns:fx="http://javafx.com/fxml/1" fx:controller="modules.ModulesController">
 
+    <children>
+        <fx:include fx:id="mainHeader" source="/fxml/parts/Header.fxml" />
+        <fx:include source="/fxml/parts/BackButton.fxml" />
 
+        <ScrollPane layoutY="91.0" prefHeight="309.0" prefViewportHeight="183.0" prefViewportWidth="518.0" prefWidth="600.0">
+            <content>
+                <VBox fx:id="modulesWrapper">
+
+                    <children>
+                        <Text text="No modules found" />
+                    </children>
+                </VBox>
+            </content>
+            <padding>
+                <Insets left="20.0" right="20.0" top="20.0" />
+            </padding>
+        </ScrollPane>
+      <JFXButton fx:id="addModuleButton" layoutX="468.0" layoutY="26.0" mnemonicParsing="false" onAction="#addModule" text="Add New Module" />
+    </children>
 </AnchorPane>

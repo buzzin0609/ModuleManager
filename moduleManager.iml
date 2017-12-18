@@ -13,5 +13,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="jfoenix" level="project" />
     <orderEntry type="library" exported="" name="org.json:json:20171018" level="project" />
+    <orderEntry type="library" name="Maven: com.oracle:javafx:8.0.112" level="project" />
+    <orderEntry type="library" name="Maven: commons-io:commons-io:1.4" level="project" />
   </component>
 </module>

@@ -51,7 +51,7 @@ public class SettingsController implements Initializable {
 
     @FXML
     public void chooseModuleFolder() {
-        DirectoryUtils.chooseDirectory(moduleFolder);
+        DirectoryUtils.chooseDirectory(moduleFolder, "Choose Modules Directory");
     }
 
     @FXML
