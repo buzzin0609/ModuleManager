@@ -1,13 +1,13 @@
 package modules;
 
 import com.jfoenix.controls.JFXButton;
-import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.util.Pair;
 
 import java.io.File;
+import java.util.Optional;
 
 public class Module {
 
@@ -27,10 +27,17 @@ public class Module {
     public JFXButton editButton() {
         JFXButton button = new JFXButton("Edit");
         button.setOnMousePressed(e -> {
-            button.setText("clicked");
+            NewModuleDialog dialog = new NewModuleDialog("Edit Module", "Update an existing module", moduleFolder.getAbsolutePath(), moduleFolder.getName());
+            Optional<Pair<String, String>> result = dialog.open();
+
+            result.ifPresent(this::handleEditModule);
         });
 
         return button;
+    }
+
+    private void handleEditModule(Pair<String, String> folderNameAndPath) {
+        Pair<String, String> foo = folderNameAndPath;
     }
 
 }

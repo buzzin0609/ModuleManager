@@ -26,6 +26,9 @@ public class SettingsController implements Initializable {
     private JFXPasswordField githubPassword;
 
     @FXML
+    private JFXTextField gitRepo;
+
+    @FXML
     private JFXTextField moduleFolder;
 
     @FXML
@@ -38,6 +41,7 @@ public class SettingsController implements Initializable {
         githubUser.setText(AppSettings.getInstance().getSettingsValue("gitUsername"));
         githubPassword.setText(AppSettings.getInstance().getSettingsValue("gitPassword"));
         moduleFolder.setText(AppSettings.getInstance().getSettingsValue("moduleFolder"));
+        gitRepo.setText(AppSettings.getInstance().getSettingsValue("gitRepo"));
         new HeaderComponent("Settings", "Edit application settings", mainHeader);
     }
 
@@ -60,6 +64,7 @@ public class SettingsController implements Initializable {
         JSONObject newSettings = new JSONObject();
         newSettings.put("gitUsername", githubUser.getText());
         newSettings.put("gitPassword", githubPassword.getText());
+        newSettings.put("gitRepo", gitRepo.getText());
         newSettings.put("moduleFolder", moduleFolder.getText());
 
         if (AppSettings.getInstance().updateSettings(newSettings)) {

@@ -1,32 +1,36 @@
 package modules;
 
-import com.jfoenix.controls.JFXButton;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
 import org.apache.commons.io.FileUtils;
 import settings.AppSettings;
+import utils.State;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Optional;
+import java.util.*;
 
 public class ModulesComponent {
 
     private VBox wrapper;
-    private File[] moduleFolders;
+    private List<File> moduleFolders;
 
-    public ModulesComponent(VBox wrapper, JFXButton addModuleButton) {
+    public ModulesComponent(VBox wrapper) {
         this.wrapper = wrapper;
-        this.moduleFolders = new File(AppSettings.getInstance().getSettingsValue("moduleFolder")).listFiles(File::isDirectory);
+        this.moduleFolders = new ArrayList<>(Arrays.asList(
+                Objects.requireNonNull(
+                        new File(AppSettings.getInstance()
+                                .getSettingsValue("moduleFolder"))
+                                .listFiles(File::isDirectory)
+                )
+        ));
 
-        assert moduleFolders != null;
-        if (moduleFolders.length > 0) {
+        if (moduleFolders.size() > 0) {
             wrapper.getChildren().remove(0);
             render();
         }
+
+        State.getInstance().setValue("modules", moduleFolders);
     }
 
     private void render() {
@@ -37,7 +41,7 @@ public class ModulesComponent {
     }
 
     public void newModuleInit() {
-        NewModuleDialog dialog = new NewModuleDialog();
+        NewModuleDialog dialog = new NewModuleDialog("Add New Module", "Let's add a new module");
 
         Optional<Pair<String, String>> result = dialog.open();
 
@@ -45,6 +49,7 @@ public class ModulesComponent {
     }
 
     public void handleAddNewModule(Pair<String, String> folderNameAndPath) {
+
         File destinationFolder = new File(AppSettings.getInstance().getSettingsValue("moduleFolder") + "/" + folderNameAndPath.getKey());
 
         String fileNames = folderNameAndPath.getValue();
@@ -58,11 +63,14 @@ public class ModulesComponent {
                 } else {
                     FileUtils.copyFileToDirectory(newFileOrFolder, destinationFolder);
                 }
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
+        moduleFolders.add(destinationFolder);
+        wrapper.getChildren().add(new Module(destinationFolder).render());
 
     }
 }

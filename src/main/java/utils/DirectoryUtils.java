@@ -22,9 +22,13 @@ public class DirectoryUtils {
     }
 
     public static void chooseFiles(JFXTextField targetInput, String modalText) {
+        chooseFiles(targetInput, modalText, AppSettings.getInstance().getDefaultPath());
+    }
+
+    public static void chooseFiles(JFXTextField targetInput, String modalText, String initialFolder) {
         FileChooser chooser = new FileChooser();
         chooser.setTitle(modalText);
-        chooser.setInitialDirectory(new File(AppSettings.getInstance().getDefaultPath()));
+        chooser.setInitialDirectory(new File(initialFolder));
         List<File> selected = chooser.showOpenMultipleDialog(SceneChanger.getStage());
 
         if (selected != null) {

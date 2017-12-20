@@ -1,12 +1,7 @@
 package parts;
 
-import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.StrokeType;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
-import utils.SceneChanger;
 
 public class HeaderComponent {
 

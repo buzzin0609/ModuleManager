@@ -2,11 +2,12 @@ package settings;
 
 import org.json.JSONObject;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Objects;
 
 public class SettingsFile {
     private JSONObject json;
@@ -32,6 +33,7 @@ public class SettingsFile {
         defaults.put("moduleFolder", "not set");
         defaults.put("gitUsername", "username");
         defaults.put("gitPassword", "password");
+        defaults.put("gitRepo", "not set");
         writeToFile(file, defaults.toString());
         addFile();
     }

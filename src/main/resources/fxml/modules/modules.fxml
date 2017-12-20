@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.152" xmlns:fx="http://javafx.com/fxml/1" fx:controller="modules.ModulesController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="modules.ModulesController">
 
     <children>
         <fx:include fx:id="mainHeader" source="/fxml/parts/Header.fxml" />
@@ -27,5 +26,6 @@
             </padding>
         </ScrollPane>
       <JFXButton fx:id="addModuleButton" layoutX="468.0" layoutY="26.0" mnemonicParsing="false" onAction="#addModule" text="Add New Module" />
+      <!--<JFXButton fx:id="syncButton" layoutX="523.0" layoutY="66.0" mnemonicParsing="false" onAction="#syncRepo" text="Sync" />-->
     </children>
 </AnchorPane>

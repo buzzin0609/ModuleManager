@@ -1,7 +1,6 @@
 package utils;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class State {
     private static State ourInstance = new State();
@@ -10,20 +9,20 @@ public class State {
         return ourInstance;
     }
 
-    private HashMap<String, String> internalState = new HashMap<String, String>();
+    private HashMap<String, Object> internalState = new HashMap<String, Object>();
 
     private State() {
     }
 
-    public void setState(HashMap<String, String> partialState) {
+    public void setState(HashMap<String, Object> partialState) {
         partialState.forEach((key, value) -> internalState.put(key, value));
     }
 
-    public String getValue(String key) {
+    public Object getValue(String key) {
         return internalState.get(key);
     }
 
-    public void setValue(String key, String value) {
+    public void setValue(String key, Object value) {
         internalState.put(key, value);
     }
 }
