@@ -3,6 +3,7 @@ package modules;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
 import org.apache.commons.io.FileUtils;
+import project.ManageProjectController;
 import settings.AppSettings;
 import utils.State;
 
@@ -54,20 +55,11 @@ public class ModulesComponent {
 
         String fileNames = folderNameAndPath.getValue();
 
-        for (String fileOrFolder : fileNames.split(",\\s?")) {
-            File newFileOrFolder = new File(fileOrFolder);
-
-            try {
-                if (newFileOrFolder.isDirectory()) {
-                    FileUtils.copyDirectoryToDirectory(newFileOrFolder, destinationFolder);
-                } else {
-                    FileUtils.copyFileToDirectory(newFileOrFolder, destinationFolder);
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        Arrays.stream(fileNames.split(",\\s?"))
+                .map(File::new)
+                .forEach(newFileOrFolder -> {
+                    ManageProjectController.copyFileOrFolder(destinationFolder, newFileOrFolder);
+                });
 
         moduleFolders.add(destinationFolder);
         wrapper.getChildren().add(new Module(destinationFolder).render());

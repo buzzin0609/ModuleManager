@@ -11,9 +11,13 @@ import java.util.List;
 public class DirectoryUtils {
 
     public static void chooseDirectory(JFXTextField targetInput, String modalText) {
+        chooseDirectory(targetInput, modalText, AppSettings.getInstance().getDefaultPath());
+    }
+
+    public static void chooseDirectory(JFXTextField targetInput, String modalText, String initialFolder) {
         DirectoryChooser chooser = new DirectoryChooser();
         chooser.setTitle(modalText);
-        chooser.setInitialDirectory(new File(AppSettings.getInstance().getDefaultPath()));
+        chooser.setInitialDirectory(new File(initialFolder));
         File selected = chooser.showDialog(SceneChanger.getStage());
 
         if (selected != null) {

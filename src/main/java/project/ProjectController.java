@@ -10,6 +10,7 @@ import parts.HeaderComponent;
 import settings.AppSettings;
 import utils.DirectoryUtils;
 import utils.SceneChanger;
+import utils.State;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -43,7 +44,8 @@ public class ProjectController implements Initializable {
     }
 
     @FXML
-    private void goBack() {
-        SceneChanger.goBack();
+    private void manageProject() {
+        State.getInstance().setValue("projectFolder", directoryInput.getText());
+        SceneChanger.changeScene("/fxml/project/manageProject.fxml");
     }
 }

@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="JavaFXApp.jar" size="26045" download="eager" />
+    <jar href="JavaFXApp.jar" size="28989" download="eager" />
     <jar href="commons-io-1.4.jar" size="109043" download="eager" />
     <jar href="jfoenix.jar" size="2401594" download="eager" />
     <jar href="json-20171018.jar" size="61749" download="eager" />
