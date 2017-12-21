@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="project.ManageProjectController">
+    <fx:include fx:id="mainHeader" source="/fxml/parts/Header.fxml" />
+    <fx:include source="/fxml/parts/BackButton.fxml" />
+    <HBox alignment="CENTER" layoutX="5.0" layoutY="106.0" prefHeight="17.0" prefWidth="596.0" spacing="5.0">
+        <Text>Project Folder: </Text>
+        <Text fx:id="projectFolderText" wrappingWidth="73.734375">Folder Text</Text>
+    </HBox>
+
+    <VBox alignment="CENTER" layoutX="182.0" layoutY="150.0" prefHeight="70.0" prefWidth="240.0" spacing="20.0">
+        <HBox alignment="TOP_CENTER" spacing="5.0">
+            <JFXTextField fx:id="targetFolder" />
+            <JFXButton onMouseClicked="#chooseTarget" text="Choose Target" />
+        </HBox>
+        <HBox alignment="TOP_CENTER" spacing="5.0">
+            <JFXTextField fx:id="moduleToAdd"/>
+            <JFXButton onMouseClicked="#startAddModule" text="Choose Modules" />
+        </HBox>
+        <HBox alignment="TOP_CENTER">
+            <JFXButton onMouseClicked="#addModule" fx:id="addModuleButton">Add Module</JFXButton>
+        </HBox>
+    </VBox>
+</AnchorPane>
